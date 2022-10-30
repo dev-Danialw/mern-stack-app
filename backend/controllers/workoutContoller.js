@@ -16,13 +16,21 @@ const singleWorkout = async (req, res) => {
     const workout = await Workout.findById(req.params.id);
     res.status(200).json(workout);
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(404).json({ error: error.message });
   }
 };
 
 // Post Workout
 const createWorkout = async (req, res) => {
   const { title, reps, load } = req.body;
+
+  // error handling
+  let emptyFields = [];
+
+  if (!title || !reps || !load) {
+    emptyFields.push({ title, reps, load });
+    return res.status(400).json({ error: "Please fill in all fields" });
+  }
 
   try {
     const workout = await Workout.create({
