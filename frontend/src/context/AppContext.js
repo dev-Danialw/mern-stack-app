@@ -18,7 +18,7 @@ export const workoutReducer = (state, action) => {
       return {
         ...state,
         workouts: state.workouts.filter(
-          (workout) => workout._id !== action.payload
+          (workout) => workout._id !== action.payload._id
         ),
       };
     default:
