@@ -4,7 +4,7 @@ const Workout = require("../models/workoutModal");
 const allWorkouts = async (req, res) => {
   try {
     const workouts = await Workout.find().sort({ createdAt: -1 });
-    res.status(200).json({ workouts });
+    res.status(200).json(workouts);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -14,7 +14,7 @@ const allWorkouts = async (req, res) => {
 const singleWorkout = async (req, res) => {
   try {
     const workout = await Workout.findById(req.params.id);
-    res.status(200).json({ workout });
+    res.status(200).json(workout);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -30,7 +30,7 @@ const createWorkout = async (req, res) => {
       reps,
       load,
     });
-    res.status(200).json({ workout });
+    res.status(200).json(workout);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -42,7 +42,7 @@ const updateWorkout = async (req, res) => {
     const workout = await Workout.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
-    res.status(200).json({ workout });
+    res.status(200).json(workout);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -52,7 +52,7 @@ const updateWorkout = async (req, res) => {
 const deleteWorkout = async (req, res) => {
   try {
     const workout = await Workout.findByIdAndDelete(req.params.id);
-    res.status(200).json({ workout });
+    res.status(200).json(workout);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
